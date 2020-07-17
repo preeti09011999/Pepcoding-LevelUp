@@ -14,25 +14,17 @@ public class Main {
     while(d1 < a.length && d2 < b.length){
         if(a[d1] < b[d2] ){
             // d1 pointer consumed
-            res[idx] = a[d1];
-            d1++;
-            idx++;
+            res[idx++] = a[d1++];
         }else{
-            res[idx] = b[d2];
-            d2++;
-            idx++;
+            res[idx++] = b[d2++];
         }
     }
     
     while(d1 < a.length){
-        res[idx] = a[d1];
-        idx++;
-        d1++;
+        res[idx++] = a[d1++];
     }
     while(d2 < b.length){
-        res[idx] = b[d2];
-        idx++;
-        d2++;
+        res[idx++] = b[d2++];
     }
     
     return res;
