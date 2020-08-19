@@ -40,3 +40,32 @@ class Solution {
         return false;
     }
 }
+
+//--------------------O(n) space - O(1)
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    TreeNode LCANode = null;
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        lowestCommonAncestor_(root,p,q);
+        return LCANode;
+    }
+    
+    public boolean lowestCommonAncestor_(TreeNode root, TreeNode p, TreeNode q){
+        if(root == null) return false;
+        boolean selfdone = false;
+        if(root == p || root == q) selfdone = true;
+        boolean leftdone = lowestCommonAncestor_(root.left, p, q);
+        if(LCANode != null) return true;
+        boolean rightdone = lowestCommonAncestor_(root.right, p, q);
+        if((leftdone && selfdone)||(rightdone && selfdone)||(leftdone && rightdone)) LCANode = root;
+        return leftdone || rightdone || selfdone;
+    }
+}
